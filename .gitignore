@@ -1,0 +1,119 @@
+# FinOps Dashboard .gitignore
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Database files
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.sqlite*
+
+# Log files
+*.log
+data/*.log
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# AWS credentials (NEVER commit these)
+.aws/
+aws-credentials*
+credentials.json
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.bak
+
+# Report files (may contain sensitive data)
+reports/*.html
+reports/*.pdf
+reports/*.xlsx
+
+# Backup files
+backup/
+*.backup
+
+# Local configuration overrides
+config/local.yaml
+config/production.yaml
+
+# Dashboard screenshots (unless specifically needed)
+screenshots/
+dashboard_*.png
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Excel files that might contain sensitive data
+*.xlsx
+*.xls
+
+# CSV exports that might contain usage data
+exports/*.csv
+data/exports/
