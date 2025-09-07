@@ -1,0 +1,107 @@
+# FinOps Dashboard Configuration
+# Free Tier AWS Cost Monitoring Configuration
+
+# Database Configuration
+database_path: "data/finops_dashboard.db"
+
+# AWS Configuration
+aws_region: "us-east-1"
+aws_profile: null  # Use default credentials or specify profile name
+aws_enabled: true
+
+# GCP Configuration (disabled for free tier focus)
+gcp_enabled: false
+
+# Free Tier Focus
+free_tier_focus: true
+max_monthly_cost_alert: 1.0  # Alert if monthly cost exceeds $1
+
+# Alert Thresholds (percentage of free tier limits)
+alert_thresholds:
+  warning: 75.0    # 75% of free tier limit
+  critical: 90.0   # 90% of free tier limit
+  breach: 100.0    # Over free tier limit
+
+# Monitoring Configuration
+monitoring:
+  check_interval_hours: 6
+  report_email: null  # Set your email for weekly reports
+  enable_cost_alerts: true
+  enable_usage_predictions: true
+
+# Dashboard Configuration
+dashboard:
+  host: "localhost"
+  port: 8050
+  debug: false
+  title: "AWS Free Tier Usage Monitor"
+
+# Free Tier Service Limits (AWS 12-month free tier)
+free_tier_services:
+  ec2:
+    name: "Amazon Elastic Compute Cloud - Compute"
+    limits:
+      t2_micro_hours: 750  # hours per month
+    description: "750 hours of t2.micro instances per month"
+  
+  s3:
+    name: "Amazon Simple Storage Service"
+    limits:
+      standard_storage_gb: 5        # GB per month
+      get_requests: 20000          # requests per month
+      put_requests: 2000           # requests per month
+    description: "5 GB storage, 20K GET, 2K PUT requests per month"
+  
+  lambda:
+    name: "AWS Lambda"
+    limits:
+      requests: 1000000            # requests per month
+      compute_gb_seconds: 400000   # GB-seconds per month
+    description: "1M requests and 400K GB-seconds per month"
+  
+  rds:
+    name: "Amazon Relational Database Service"
+    limits:
+      db_t2_micro_hours: 750       # hours per month
+      storage_gb: 20               # GB per month
+    description: "750 hours db.t2.micro and 20 GB storage per month"
+  
+  dynamodb:
+    name: "Amazon DynamoDB"
+    limits:
+      storage_gb: 25               # GB always free
+      read_capacity_units: 25      # RCU always free
+      write_capacity_units: 25     # WCU always free
+    description: "25 GB storage, 25 RCU, 25 WCU (always free)"
+
+# Notification Configuration
+notifications:
+  email:
+    enabled: false
+    smtp_server: null
+    smtp_port: 587
+    username: null
+    password: null
+    use_tls: true
+  
+  # Future: Could add Slack, Teams, etc. (all free options)
+
+# Reporting Configuration
+reporting:
+  weekly_report: true
+  monthly_summary: true
+  cost_anomaly_detection: true
+  export_format: "json"  # json, csv, html
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  file: "data/finops_dashboard.log"
+  max_size_mb: 10
+  backup_count: 5
+
+# Data Retention
+data_retention:
+  usage_data_days: 90      # Keep usage data for 90 days
+  alert_data_days: 30      # Keep alert data for 30 days
+  cost_data_days: 365      # Keep cost data for 1 year
